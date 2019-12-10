@@ -73,6 +73,17 @@ app.get("/", async (req, res) => {
   }
 });
 
+// READ BY ID
+
+app.get("/:escapeId", async (req, res) => {
+  try {
+    const foundEscapeById = await Escape.findById(req.params.escapeId);
+    res.status(200).json(foundEscapeById);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 // UPDATE
 app.post("/update", async (req, res) => {
   try {
