@@ -1,25 +1,23 @@
 const mongoose = require("mongoose");
 
 const Escape = mongoose.model("Escape", {
-  title: String,
-  name: String,
-  address: String,
-  location: {
-    lng: Number,
-    lat: Number
-  },
-  level: String,
-  category: {
-    searching: Number,
-    manipulation: Number,
-    reasoning: Number
-  },
-  rating: Number,
-  description: String,
-  pictures: String,
-  price: String,
+  theme: String,
+  levels: String,
   players: String,
-  website: String
+  domain: String,
+  rating: Number,
+  "user-rating": Number,
+  "room-snooping": Number,
+  "room-handling": Number,
+  "room-thinking": Number,
+  thumbnail: String,
+  summury: String,
+  name: String,
+  company: String,
+  content: String,
+  booking: String,
+  price: String,
+  location: [Object]
 });
 
 module.exports = Escape;

@@ -2,6 +2,7 @@ const express = require("express");
 const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const fs = require("fs");
 
 const Escape = require("./Models/Escape.js");
 
@@ -12,7 +13,7 @@ app.use(cors());
 // ACTIVATE FORMIDABLE
 app.use(formidable());
 
-mongoose.connect("mongodb://localhost/add-escape", {
+mongoose.connect("mongodb://localhost/escapegames", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -20,43 +21,12 @@ mongoose.connect("mongodb://localhost/add-escape", {
 // ROUTE
 // CREATE NEW ESCAPE
 
-app.post("/add-escape", async (req, res) => {
-  const {
-    title,
-    name,
-    address,
-    location,
-    level,
-    category,
-    rating,
-    description,
-    pictures,
-    price,
-    players,
-    website
-  } = req.fields;
-
+app.get("/escape-add", async (req, res) => {
+  const escape = fs.readFileSync("./data/games.json", "utf-8");
   try {
-    const newEscape = new Escape({
-      title,
-      name,
-      address,
-      location: { lng: location.lng, lat: location.lat },
-      level,
-      category: {
-        searching: category.searching,
-        manipulation: category.manipulation,
-        reasoning: category.reasoning
-      },
-      rating,
-      description,
-      pictures,
-      price,
-      players,
-      website
-    });
-    await newEscape.save();
-    res.json({ message: "Escape created" });
+    await Escape.remove();
+    await Escape.insertMany(JSON.parse(escape));
+    res.send("ok");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -87,9 +57,8 @@ app.get("/:escapeId", async (req, res) => {
 // UPDATE
 app.post("/update", async (req, res) => {
   try {
-    if (req.fields.id) {
-      const Escape = await Escape.findById(req.fields.id);
-
+    if (req.fields._id) {
+      const Escape = await Escape.findById(req.fields._id);
       await Escape.save();
       res.json({ message: "Updated" });
     } else {
@@ -104,8 +73,8 @@ app.post("/update", async (req, res) => {
 
 app.post("/delete", async (req, res) => {
   try {
-    if (req.fields.id) {
-      const Escape = await Student.findById(req.fields.id);
+    if (req.fields._id) {
+      const Escape = await Student.findById(req.fields._id);
       await Escape.remove();
       res.json({ message: "Removed" });
     } else {
