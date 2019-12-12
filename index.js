@@ -91,6 +91,6 @@ app.post("/delete", async (req, res) => {
 
 // STARTED SERVER
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has started");
 });
