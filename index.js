@@ -14,10 +14,10 @@ app.use(cors());
 // ACTIVATE FORMIDABLE
 app.use(formidable());
 
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // ROUTE
 // CREATE NEW ESCAPE
@@ -91,6 +91,6 @@ app.post("/delete", async (req, res) => {
 
 // STARTED SERVER
 
-app.listen(4000, () => {
+app.listen(3000, () => {
   console.log("Server has started");
 });
