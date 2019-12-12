@@ -36,8 +36,6 @@ app.get("/escape-add", async (req, res) => {
 // READ
 
 app.get("/", async (req, res) => {
-  console.log("Hey");
-
   try {
     const foundEscapeGames = await Escape.find();
     res.status(200).json(foundEscapeGames);
