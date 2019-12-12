@@ -36,8 +36,9 @@ app.get("/escape-add", async (req, res) => {
 
 app.get("/", async (req, res) => {
   try {
-    const foundEscapeGames = await Escape.find();
-    res.status(200).json(foundEscapeGames);
+    // const foundEscapeGames = await Escape.find();
+    // res.status(200).json(foundEscapeGames);
+    res.json("Coucou");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
