@@ -13,7 +13,7 @@ app.use(cors());
 // ACTIVATE FORMIDABLE
 app.use(formidable());
 
-mongoose.connect("mongodb://localhost/escapegames", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
