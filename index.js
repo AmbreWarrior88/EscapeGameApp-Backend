@@ -39,9 +39,8 @@ app.get("/", async (req, res) => {
   console.log("Hey");
 
   try {
-    // const foundEscapeGames = await Escape.find();
-    // res.status(200).json(foundEscapeGames);
-    res.json("Coucou");
+    const foundEscapeGames = await Escape.find();
+    res.status(200).json(foundEscapeGames);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
