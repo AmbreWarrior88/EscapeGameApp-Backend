@@ -3,6 +3,7 @@ const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const fs = require("fs");
+require("dotenv").config();
 
 const Escape = require("./Models/Escape.js");
 
