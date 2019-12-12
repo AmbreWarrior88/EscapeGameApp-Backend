@@ -14,10 +14,10 @@ app.use(cors());
 // ACTIVATE FORMIDABLE
 app.use(formidable());
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
 // ROUTE
 // CREATE NEW ESCAPE
